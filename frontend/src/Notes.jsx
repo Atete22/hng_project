@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Notes.css";
 
-const API = "http://localhost:8000";
+const API = "https://hng-project-i4ur.onrender.com";
 
 function formatTime(iso) {
   if (!iso) return "";
