@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./TodoList.css";
 
-const API = "http://localhost:8000";
+ const API = "https://hng-project-i4ur.onrender.com";
 
 function isOverdue(task) {
   if (!task.due_date || task.done) return false;
