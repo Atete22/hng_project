@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./TodoList.css";
 
- const API = "https://hng-project-i4ur.onrender.com";
+const API = "https://hng-project-i4ur.onrender.com";
 
 function isOverdue(task) {
   if (!task.due_date || task.done) return false;
@@ -19,7 +19,7 @@ function formatDue(due_date) {
   });
 }
 
-export default function TodoList() {
+export default function TodoList({ refreshKey }) {
   const [tasks, setTasks] = useState([]);
   const [text, setText] = useState("");
   const [dueDate, setDueDate] = useState("");
@@ -71,7 +71,7 @@ export default function TodoList() {
 
   useEffect(() => {
     loadTasks();
-  }, []);
+  }, [refreshKey]);
 
   async function addTask(e) {
     e.preventDefault();

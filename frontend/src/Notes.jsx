@@ -14,7 +14,7 @@ function formatTime(iso) {
   });
 }
 
-export default function Notes() {
+export default function Notes({ refreshKey }) {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -40,7 +40,8 @@ export default function Notes() {
 
   useEffect(() => {
     loadNotes();
-  }, []);
+    setActiveId(null); // close any open editor when data is reloaded/cleared
+  }, [refreshKey]);
 
   async function addNote() {
     try {
