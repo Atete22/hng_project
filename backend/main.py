@@ -181,6 +181,15 @@ def delete_task(task_id: int):
     return {"ok": True}
 
 
+@app.delete("/tasks")
+def clear_tasks():
+    """Delete ALL tasks. Used by the 'Clear sample data' button."""
+    with get_conn() as conn:
+        conn.execute("DELETE FROM tasks")
+        conn.commit()
+    return {"ok": True}
+
+
 @app.get("/notes")
 def list_notes():
     with get_conn() as conn:
@@ -228,6 +237,15 @@ def delete_note(note_id: int):
         if not existing:
             raise HTTPException(status_code=404, detail="Note not found")
         conn.execute("DELETE FROM notes WHERE id = ?", (note_id,))
+        conn.commit()
+    return {"ok": True}
+
+
+@app.delete("/notes")
+def clear_notes():
+    """Delete ALL notes. Used by the 'Clear sample data' button."""
+    with get_conn() as conn:
+        conn.execute("DELETE FROM notes")
         conn.commit()
     return {"ok": True}
 
